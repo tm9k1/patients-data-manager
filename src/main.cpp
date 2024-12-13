@@ -1,9 +1,12 @@
 #include <iostream>
 
-using namespace std;
+#include "core/application.h"
 
 int main()
 {
-    cout << "HOLA AMIGOS" << endl;
+
+    Application app;
+    return app.exec();
+
     return 0;
 }
