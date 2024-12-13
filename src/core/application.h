@@ -2,8 +2,13 @@
 
 class Application
 {
+
 public:
-   int exec();
+
+    int exec();
+    void show();
+
 private:
-    int _return_code;
+
+    unsigned char _return_code = 0;
 };

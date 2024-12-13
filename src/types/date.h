@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+
 /* DATE
 //
 // Basic Date Data Structure that can hold a date and allow convenient I/O over it

@@ -2,8 +2,8 @@
 
 #include <string>
 
-#include "core/date.h"
-#include "core/util.h"
+#include "types/date.h"
+#include "types/util.h"
 
 /* PATIENT DATA
 //

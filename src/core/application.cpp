@@ -1,7 +1,6 @@
 #include "application.h"
 
-#include "core/date.h"
-#include "core/patient.h"
+#include "types/patient.h"
 
 #include <vector>
 
