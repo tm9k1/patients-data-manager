@@ -4,4 +4,4 @@ list(APPEND CORE_LIB_SRCS
 
 add_library(corelib SHARED ${CORE_LIB_SRCS})
 
-target_link_libraries(corelib PRIVATE typeslib)
+target_link_libraries(corelib PRIVATE typeslib iolib)

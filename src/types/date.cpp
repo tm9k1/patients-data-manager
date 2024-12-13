@@ -1,5 +1,8 @@
 #include "date.h"
+
 #include <array>
+#include <sstream>
+#include <iomanip>
 
 namespace {
 
@@ -9,10 +12,11 @@ bool isLeapYear(int year) {
 
 }
 
-Date::Date() = default;
-Date::Date(const int& day, const int& month, const int& year)
+Date_C::Date_C() = default;
+
+Date_C::Date_C(const int& day, const int& month, const int& year)
 {
-    if (Date::isValidDate()) {
+    if (Date_C::isValidDate()) {
         _day = day;
         _month = month;
         _year = year;
@@ -21,7 +25,15 @@ Date::Date(const int& day, const int& month, const int& year)
     }
 }
 
-bool Date::isValidDate() {
+Date_C::Date_C(const std::string& date)
+{
+    std::stringstream ss(date);
+    char delimiter;
+
+    ss >> _day >> delimiter >> _month >> delimiter >> _year;
+}
+
+bool Date_C::isValidDate() {
     if (_year < 1 || _month < 1 || _month > 12 || _day < 1) {
         return false;
     }
@@ -35,21 +47,25 @@ bool Date::isValidDate() {
     return _day <= daysInMonth[_month - 1];
 }
 
-void Date::SetDate(const Date& date)
+void Date_C::SetDate(const Date_C& date)
 {
     _day = date.GetDay();
     _month = date.GetMonth();
     _year = date.GetYear();
 }
 
-void Date::PrettyPrint() const
+std::string Date_C::ToString() const
 {
-    std::cout << _day << "/" << _month << "/" << _year;
+    std::stringstream ss;
+    ss << std::setw(2) << std::setfill('0') << _day << '/'
+        << std::setw(2) << std::setfill('0') << _month << '/'
+        << _year;
+    return ss.str();
 }
 
-std::ostream& operator<<(std::ostream& stream, const Date& date)
+std::ostream& operator<<(std::ostream& stream, const Date_C& date)
 {
-    date.PrettyPrint();
+    std::cout << date.ToString();
     return stream;
 
 }

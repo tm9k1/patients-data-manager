@@ -5,7 +5,7 @@
 int main()
 {
 
-    Application app;
+    Application_C app;
     return app.exec();
 
     return 0;

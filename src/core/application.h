@@ -1,6 +1,11 @@
 #pragma once
 
-class Application
+#include "types/patient.h"
+
+#include <string>
+#include <vector>
+
+class Application_C
 {
 
 public:
@@ -11,4 +16,6 @@ public:
 private:
 
     unsigned char _return_code = 0;
+    std::vector<Patient_C> _patients_data;
+
 };

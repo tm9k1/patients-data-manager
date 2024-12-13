@@ -1,12 +1,12 @@
 #include "patient.h"
 
-Patient::Patient() = default;
+Patient_C::Patient_C() = default;
 
-Patient::Patient(const std::string& name, const Date& dob, const Date& surgery_date, const std::string& surgeon_name, JointName joint_name, OperativeSide operative_side)
+Patient_C::Patient_C(const std::string& name, const Date_C& dob, const Date_C& surgery_date, const std::string& surgeon_name, JointName joint_name, OperativeSide operative_side)
     : _name(name), _dob(dob), _surgery_date(surgery_date),
-    _surgeon_name(surgeon_name), _joint_name(_joint_name), _operative_side(operative_side) {};
+    _surgeon_name(surgeon_name), _joint_name(joint_name), _operative_side(operative_side) {};
 
-std::string Patient::GetJointName() const
+std::string Patient_C::GetJointName() const
 {
     switch(_joint_name) {
     case(JointName::HIP):
@@ -32,7 +32,7 @@ std::string Patient::GetJointName() const
     };
 }
 
-std::string Patient::GetOperativeSide() const
+std::string Patient_C::GetOperativeSide() const
 {
     switch(_operative_side) {
     case(OperativeSide::LEFT):
@@ -54,14 +54,14 @@ std::string Patient::GetOperativeSide() const
 }
 
 
-void Patient::PrettyPrint() const
+void Patient_C::PrettyPrint() const
 {
-    std::cout << "Name: " << Patient::GetName() << std::endl;
-    std::cout << "Date of Birth: " << Patient::GetDob() << std::endl;
-    std::cout << "Surgery Date: " << Patient::GetSurgeryDate() << std::endl;
-    std::cout << "Surgeon Name: " << Patient::GetSurgeonName() << std::endl;
+    std::cout << "Name: " << Patient_C::GetName() << std::endl;
+    std::cout << "Date of Birth: " << Patient_C::GetDob() << std::endl;
+    std::cout << "Surgery Date: " << Patient_C::GetSurgeryDate() << std::endl;
+    std::cout << "Surgeon Name: " << Patient_C::GetSurgeonName() << std::endl;
 
-    std::cout << "Joint Name: " << Patient::GetJointName() << std::endl;
-    std::cout << "Operative Side: " << Patient::GetOperativeSide() << std::endl;
+    std::cout << "Joint Name: " << Patient_C::GetJointName() << std::endl;
+    std::cout << "Operative Side: " << Patient_C::GetOperativeSide() << std::endl;
 
 }

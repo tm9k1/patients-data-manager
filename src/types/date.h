@@ -7,13 +7,14 @@
 // Basic Date Data Structure that can hold a date and allow convenient I/O over it
 //
 */
-class Date
+class Date_C
 {
 
 public:
     // ctors
-    Date();
-    Date(const int& day, const int& month, const int& year);
+    Date_C();
+    Date_C(const int& day, const int& month, const int& year);
+    Date_C(const std::string& date);
 
     // getters
     int GetDay()    const {return _day;}
@@ -21,13 +22,13 @@ public:
     int GetYear()   const {return _year;}
 
     // setter is Date-only to allow validation throgh construction
-    void SetDate(const Date& date);
+    void SetDate(const Date_C& date);
 
-    friend std::ostream& operator<<(std::ostream&, const Date&);
+    std::string ToString() const;
+    friend std::ostream& operator<<(std::ostream&, const Date_C&);
 
 private: // helpers
     bool isValidDate();
-    void PrettyPrint() const;
 
 private:
 
