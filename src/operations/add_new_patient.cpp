@@ -1,6 +1,7 @@
 #include "operations.h"
 
 #include "core/application.h"
+#include "io/io.h"
 
 #include <iostream>
 #include <string>
@@ -27,7 +28,8 @@ bool AddNewPatient()
         std::cout << "To confirm, type in \"Confirm\". To discard, type \"Discard\". Press Enter key when you're done typing." << std::endl;
         std::cin >> confirmation_string;
         if (std::tolower(confirmation_string[0]) == 'c') {
-            Application::_patients_data.emplace_back();
+            Application::Application_C::GetPatientsData().emplace_back(patient);
+            IO::SaveToJSON(Application::Application_C::GetPatientsData());
             std::cout << "Saved to memory!\n";
         } else {
             std::cout << "Discarded from memory!\n";

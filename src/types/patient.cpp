@@ -1,5 +1,7 @@
 #include "patient.h"
 
+#include <iomanip>
+
 namespace Types {
 Patient_C::Patient_C() = default;
 
@@ -104,12 +106,12 @@ OperativeSide Patient_C::GetOperativeSideFromString(const std::string& operative
 
 void Patient_C::PrettyPrint() const
 {
-    std::cout << "Name: " << Patient_C::GetName() << std::endl;
-    std::cout << "Date of Birth: " << Patient_C::GetDob().ToString() << std::endl;
-    std::cout << "Surgery Date: " << Patient_C::GetSurgeryDate().ToString() << std::endl;
-    std::cout << "Surgeon Name: " << Patient_C::GetSurgeonName() << std::endl;
-    std::cout << "Joint Name: " << Patient_C::GetJointName() << std::endl;
-    std::cout << "Operative Side: " << Patient_C::GetOperativeSide() << std::endl;
+    std::cout << "Name:           " << std::setw(40) << Patient_C::GetName() << std::endl;
+    std::cout << "Date of Birth:  " << std::setw(40) << Patient_C::GetDob().ToString() << std::endl;
+    std::cout << "Surgery Date:   " << std::setw(40) << Patient_C::GetSurgeryDate().ToString() << std::endl;
+    std::cout << "Surgeon Name:   " << std::setw(40) << Patient_C::GetSurgeonName() << std::endl;
+    std::cout << "Joint Name:     " << std::setw(40) << Patient_C::GetJointName() << std::endl;
+    std::cout << "Operative Side: " << std::setw(40) << Patient_C::GetOperativeSide() << std::endl;
 
 }
 

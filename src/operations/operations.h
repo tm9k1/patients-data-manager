@@ -5,5 +5,6 @@
 namespace Operations {
 
     bool AddNewPatient();
+    bool DisplayPatientDetails();
 
 } // namespace Operations

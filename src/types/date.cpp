@@ -71,7 +71,7 @@ std::string Date_C::ToString() const
     std::stringstream ss;
     ss << std::setw(2) << std::setfill('0') << _day << '/'
         << std::setw(2) << std::setfill('0') << _month << '/'
-        << _year;
+        << std::setw(4) << std::setfill('0') << _year;
     return ss.str();
 }
 

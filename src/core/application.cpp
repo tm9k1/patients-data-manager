@@ -5,6 +5,8 @@
 
 namespace Application {
 
+std::vector<Types::Patient_C> Application_C::_patients_data;
+
 bool isValid(const u_char input)
 {
     if (input > 8) {
@@ -51,7 +53,7 @@ void Application_C::show()
     std::cout << "6. Search by operative side\n";
     std::cout << "7. Sort by any field\n";
     std::cout << "8. Filter by any field\n";
-    std::cout << "9. Exit\n";
+    std::cout << "0. Exit\n";
 }
 
 void Application_C::initialize()
@@ -72,6 +74,9 @@ bool Application_C::startOperation()
     switch(_input_code) {
         case 1: {
             return Operations::AddNewPatient();
+        }
+        case 2: {
+            return Operations::DisplayPatientDetails();
         }
         default: {
             return false;
