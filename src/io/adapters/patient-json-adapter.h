@@ -4,8 +4,15 @@
 
 #include "types/patient.h"
 
-class PatientJsonAdapter {
-public:
-    static nlohmann::json to_json(const Patient_C& data);
-    static Patient_C& from_json(const nlohmann::json& j);
-};
+using Json = nlohmann::json;
+
+/*
+// adapter for Patient class implicit de/serialization
+*/
+namespace Patient {
+
+    void to_json(Json& json_object, const Patient::Patient_C& patient);
+
+    void from_json(const Json& json_object, Patient::Patient_C& patient);
+
+} // namespace Patient

@@ -1,23 +1,27 @@
 #include "patient-json-adapter.h"
 
-nlohmann::json PatientJsonAdapter::to_json(const Patient_C& data) {
-    return nlohmann::json(
-        {
-            {"name",             data.GetName()},
-            {"date-of-birth",   data.GetDob().ToString()},
-            {"date-of-surgery", data.GetSurgeryDate().ToString()},
-            {"name-of-surgeon", data.GetSurgeonName()},
-            {"joint-name",      data.GetJointName()},
-            {"operative-side",  data.GetOperativeSide()}
-        }
-    );
-}
-// CONTINUE HERE
-Patient_C& PatientJsonAdapter::from_json(const nlohmann::json& j) {
-    Patient_C p;
-    // j.at("id").get_to(data.id);
-    // j.at("name").get_to(data.name);
-    // j.at("value").get_to(data.value);
+namespace Patient {
 
-    return p;
+void to_json(Json& json_object, const Patient::Patient_C& patient) {
+
+    json_object = Json{
+            {"name",            patient.GetName()},
+            {"date-of-birth",   patient.GetDob().ToString()},
+            {"date-of-surgery", patient.GetSurgeryDate().ToString()},
+            {"name-of-surgeon", patient.GetSurgeonName()},
+            {"joint-name",      patient.GetJointName()},
+            {"operative-side",  patient.GetOperativeSide()}
+        };
 }
+
+void from_json(const Json& json_object, Patient::Patient_C& patient) {
+
+    patient.SetName(json_object["name"].template get<std::string>());
+    patient.SetDob(json_object["date-of-birth"].template get<std::string>());
+    patient.SetSurgeryDate(json_object["date-of-surgery"].template get<std::string>());
+    patient.SetSurgeonName(json_object["name-of-surgeon"].template get<std::string>());
+    patient.SetJointName(json_object["joint-name"].template get<std::string>());
+    patient.SetOperativeSide(json_object["operative-side"].template get<std::string>());
+}
+
+} // namespace Patient

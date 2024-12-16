@@ -16,6 +16,6 @@ public:
 private:
 
     unsigned char _return_code = 0;
-    std::vector<Patient_C> _patients_data;
+    std::vector<Patient::Patient_C> _patients_data;
 
 };

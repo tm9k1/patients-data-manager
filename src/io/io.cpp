@@ -11,37 +11,49 @@ using Json = nlohmann::json;
 
 namespace IO {
 
-Json SerializePatientsData(const std::vector<Patient_C>& patients) {
-    nlohmann::json jsonArray = nlohmann::json::array();
+Json SerializePatientsData(const std::vector<Patient::Patient_C>& patients) {
+    Json jsonArray = Json::array();
     for (const auto& patient : patients) {
-        Json json = PatientJsonAdapter::to_json(patient);
+        Json json = patient;
         jsonArray.push_back(json);
     }
     return jsonArray;
 }
 
-bool IO_C::SaveToJSON(const std::vector<Patient_C>& patients_data)
+bool IO_C::SaveToJSON(const std::vector<Patient::Patient_C>& patients_data)
 {
     Json json_object;
     json_object["version"] = 0.1;
+
     // serialize vector of patients here
     auto patients_serialized = SerializePatientsData(patients_data);
     json_object["patients"] = patients_serialized;
+
     std::ofstream file(_patients_data_file_name);
     file << std::setw(4) << json_object << std::endl;
+
     return true;
 }
 
-std::vector<Patient_C>& IO_C::LoadFromJSON()
+std::vector<Patient::Patient_C> IO_C::LoadFromJSON()
 {
+    // parse the json file
     std::ifstream file(_patients_data_file_name);
-    // json json_data;
-    // file >> json_data;
-    // return json_data.dump(4);
-    std::vector<Patient_C> vec;
+    Json data = Json::parse(file);
+
+    // extract jsonarray of patients data
+    std::vector<Patient::Patient_C> vec;
+
+    auto& patients_data_json = data["patients"];
+    for (const auto& patient_data_json : patients_data_json) {
+
+        // ... and deserialize into Patient::Patient_C objects
+        auto patient = patient_data_json.template get<Patient::Patient_C>();
+
+        // store into vector for sending back to application
+        vec.emplace_back(patient);
+    }
     return vec;
 }
 
-
-
-}
+} // namespace IO

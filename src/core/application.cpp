@@ -23,14 +23,24 @@ int Application_C::exec()
     //     "age": 32,
     //     "car": null
     // })", _patient_data_file_name);
-    Patient_C patient1("abcd", Date_C("01/01/1999"), Date_C("01/01/2020"), "Arnab Goswami", JointName::HIP, OperativeSide::LEFT);
-    Patient_C patient2("xyz", Date_C("01/01/1993"), Date_C("01/01/2000"), "Arnab Gonzales", JointName::HIP,OperativeSide::LEFT);
-    Patient_C patient3("lolwa", Date_C("01/01/1996"), Date_C("01/01/2030"), "Arnab Goswami", JointName::HIP, OperativeSide::LEFT);
+    Patient::Patient_C patient1("abcd", Date_C("01/01/1999"), Date_C("01/01/2020"), "Arnab Goswami", JointName::HIP, OperativeSide::LEFT);
+    Patient::Patient_C patient2("xyz", Date_C("01/01/1993"), Date_C("01/01/2000"), "Arnab Gonzales", JointName::HIP,OperativeSide::LEFT);
+    Patient::Patient_C patient3("lolwa", Date_C("01/01/1996"), Date_C("01/01/2030"), "Arnab Goswami", JointName::HIP, OperativeSide::LEFT);
     _patients_data.push_back(patient1);
     _patients_data.push_back(patient2);
     _patients_data.push_back(patient3);
 
-    IO::IO_C::SaveToJSON(_patients_data);
+    if (IO::IO_C::SaveToJSON(_patients_data)) {
+        std::cout << "SUCCESSFUL SaveToJSON!!" << std::endl;
+    } else {
+        std::cerr << "FAILED SaveToJSON!!" << std::endl;
+    }
+
+    std::vector<Patient::Patient_C> patients = IO::IO_C::LoadFromJSON();
+    for (const auto patient: patients) {
+        patient.PrettyPrint();
+    }
+
     return _return_code;
 }
 

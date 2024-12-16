@@ -1,0 +1,29 @@
+{
+    "patients": [
+        {
+            "date-of-birth": "01/01/1999",
+            "date-of-surgery": "01/01/2020",
+            "joint-name": "HIP",
+            "name": "abcd",
+            "name-of-surgeon": "Arnab Goswami",
+            "operative-side": "LEFT"
+        },
+        {
+            "date-of-birth": "01/01/1993",
+            "date-of-surgery": "01/01/2000",
+            "joint-name": "HIP",
+            "name": "xyz",
+            "name-of-surgeon": "Arnab Gonzales",
+            "operative-side": "LEFT"
+        },
+        {
+            "date-of-birth": "01/01/1996",
+            "date-of-surgery": "01/01/2030",
+            "joint-name": "HIP",
+            "name": "lolwa",
+            "name-of-surgeon": "Arnab Goswami",
+            "operative-side": "LEFT"
+        }
+    ],
+    "version": 0.1
+}
