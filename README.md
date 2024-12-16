@@ -35,7 +35,16 @@ link to problem statement: https://stryker-agile.atlassian.net/wiki/spaces/CS/pa
 
 ## Build Instructions
 
-[TODO] update this
+- usual cmake build sequence.
+- go to base of the project tree.
+
+```bash
+mkdir build
+cd build
+cmake ..
+make
+./assignment
+```
 
 ## Screenshots
 
