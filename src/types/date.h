@@ -2,6 +2,9 @@
 
 #include <iostream>
 
+namespace Types {
+
+
 /* DATE
 //
 // Basic Date Data Structure that can hold a date and allow convenient I/O over it
@@ -25,10 +28,6 @@ public:
     void SetDate(const Date_C& date);
 
     std::string ToString() const;
-    friend std::ostream& operator<<(std::ostream&, const Date_C&);
-
-private: // helpers
-    bool isValidDate();
 
 private:
 
@@ -36,3 +35,5 @@ private:
     u_int16_t _month = 1;
     u_int64_t _year = 1970; // supports up to UINT64_MAX
 };
+
+} // namespace Types

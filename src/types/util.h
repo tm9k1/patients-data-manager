@@ -1,5 +1,9 @@
 #pragma once
 
+#include <algorithm>
+
+namespace Types {
+
 // Joint Name: Enum (Hip, Shoulder, Knee)
 // Operative Side: Enum (Left, Right)
 
@@ -15,3 +19,5 @@ enum class OperativeSide {
     LEFT,
     RIGHT
 };
+
+} // namespace Types

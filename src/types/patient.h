@@ -6,7 +6,7 @@
 #include <string>
 #include <unordered_map>
 
-namespace Patient {
+namespace Types {
 
 /* PATIENT DATA
 //
@@ -67,4 +67,4 @@ private: // data
     OperativeSide _operative_side = OperativeSide::UNDEFINED;
 };
 
-} // namespace Patient
+} // namespace Types

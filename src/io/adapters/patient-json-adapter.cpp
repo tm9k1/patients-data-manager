@@ -1,8 +1,8 @@
 #include "patient-json-adapter.h"
 
-namespace Patient {
+namespace Types {
 
-void to_json(Json& json_object, const Patient::Patient_C& patient) {
+void to_json(Json& json_object, const Types::Patient_C& patient) {
 
     json_object = Json{
             {"name",            patient.GetName()},
@@ -14,7 +14,7 @@ void to_json(Json& json_object, const Patient::Patient_C& patient) {
         };
 }
 
-void from_json(const Json& json_object, Patient::Patient_C& patient) {
+void from_json(const Json& json_object, Types::Patient_C& patient) {
 
     patient.SetName(json_object["name"].template get<std::string>());
     patient.SetDob(json_object["date-of-birth"].template get<std::string>());
@@ -24,4 +24,4 @@ void from_json(const Json& json_object, Patient::Patient_C& patient) {
     patient.SetOperativeSide(json_object["operative-side"].template get<std::string>());
 }
 
-} // namespace Patient
+} // namespace Types

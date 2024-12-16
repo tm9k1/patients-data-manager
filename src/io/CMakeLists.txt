@@ -15,4 +15,4 @@ list(APPEND IO_LIB_SRCS
 
 add_library(iolib SHARED ${IO_LIB_SRCS})
 
-target_link_libraries(iolib PRIVATE nlohmann_json::nlohmann_json)
+target_link_libraries(iolib PRIVATE nlohmann_json::nlohmann_json typeslib)

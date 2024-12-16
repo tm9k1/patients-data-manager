@@ -9,20 +9,13 @@ namespace IO {
 
 const std::string _patients_data_file_name = "patients_data.json";
 
-/*
-// Class to facilitate Input/Output for persistent storage of patient data
-*/
+// Methods to facilitate Input/Output for persistent storage of patient data
 
-class IO_C
-{
+// save data to JSON passed as std::vector of patients data
+bool SaveToJSON(const std::vector<Types::Patient_C>& patients_data);
 
-public:
+// load data from file and return as std::vector of Patients
+std::vector<Types::Patient_C> LoadFromJSON();
 
-// save data passed as serialized string
-static bool SaveToJSON(const std::vector<Patient::Patient_C>& patients_data);
-
-// load data from file and return as serialized string
-static std::vector<Patient::Patient_C> LoadFromJSON();
-};
 
 }

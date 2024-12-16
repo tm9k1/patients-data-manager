@@ -5,8 +5,7 @@
 int main()
 {
 
-    Application_C app;
+    Application::Application_C app;
     return app.exec();
 
-    return 0;
 }

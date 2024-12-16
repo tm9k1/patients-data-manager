@@ -9,10 +9,10 @@ using Json = nlohmann::json;
 /*
 // adapter for Patient class implicit de/serialization
 */
-namespace Patient {
+namespace Types {
 
-    void to_json(Json& json_object, const Patient::Patient_C& patient);
+    void to_json(Json& json_object, const Types::Patient_C& patient);
 
-    void from_json(const Json& json_object, Patient::Patient_C& patient);
+    void from_json(const Json& json_object, Types::Patient_C& patient);
 
-} // namespace Patient
+} // namespace Types

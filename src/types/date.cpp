@@ -5,18 +5,34 @@
 #include <iomanip>
 
 namespace {
-
 bool isLeapYear(int year) {
     return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
 }
 
+
+bool isValidDate(const int day, const int month, const int year) {
+    if (year < 1 || month < 1 || month > 12 || day < 1) {
+        return false;
+    }
+
+    std::array<int, 12> daysInMonth = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+    if (isLeapYear(year)) {
+        daysInMonth[1] = 29; // February in a leap year
+    }
+
+    return day <= daysInMonth[month - 1];
 }
+
+
+}
+namespace Types {
 
 Date_C::Date_C() = default;
 
 Date_C::Date_C(const int& day, const int& month, const int& year)
 {
-    if (Date_C::isValidDate()) {
+    if (isValidDate(day, month, year)) {
         _day = day;
         _month = month;
         _year = year;
@@ -28,23 +44,19 @@ Date_C::Date_C(const int& day, const int& month, const int& year)
 Date_C::Date_C(const std::string& date)
 {
     std::stringstream ss(date);
+    int day, month, year;
     char delimiter;
 
-    ss >> _day >> delimiter >> _month >> delimiter >> _year;
-}
+    // parse "DD/MM/YYYY" into day , month, year
+    ss >> day >> delimiter >> month >> delimiter >> year;
 
-bool Date_C::isValidDate() {
-    if (_year < 1 || _month < 1 || _month > 12 || _day < 1) {
-        return false;
+    if (isValidDate(day, month, year)) {
+        _day = day;
+        _month = month;
+        _year = year;
+    } else {
+        throw std::runtime_error("Invalid Date provided.");
     }
-
-    std::array<int, 12> daysInMonth = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-
-    if (isLeapYear(_year)) {
-        daysInMonth[1] = 29; // February in a leap year
-    }
-
-    return _day <= daysInMonth[_month - 1];
 }
 
 void Date_C::SetDate(const Date_C& date)
@@ -63,9 +75,4 @@ std::string Date_C::ToString() const
     return ss.str();
 }
 
-std::ostream& operator<<(std::ostream& stream, const Date_C& date)
-{
-    std::cout << date.ToString();
-    return stream;
-
-}
+} // namespace Types

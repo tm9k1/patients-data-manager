@@ -1,6 +1,6 @@
 #include "patient.h"
 
-namespace Patient {
+namespace Types {
 Patient_C::Patient_C() = default;
 
 Patient_C::Patient_C(const std::string& name, const Date_C& dob, const Date_C& surgery_date, const std::string& surgeon_name, JointName joint_name, OperativeSide operative_side)
@@ -9,18 +9,18 @@ Patient_C::Patient_C(const std::string& name, const Date_C& dob, const Date_C& s
 
 std::string Patient_C::GetJointNameToString() const
 {
-    switch(_joint_name) {
-    case(JointName::HIP):
+    switch (_joint_name) {
+    case JointName::HIP:
     {
         return "HIP";
         break;
     }
-    case(JointName::KNEE):
+    case JointName::KNEE:
     {
         return "KNEE";
         break;
     }
-    case(JointName::SHOULDER):
+    case JointName::SHOULDER:
     {
         return "SHOULDER";
         break;
@@ -35,25 +35,25 @@ std::string Patient_C::GetJointNameToString() const
 
 JointName Patient_C::GetJointNameFromString(const std::string& joint_name_string) const
 {
-    switch(joint_name_string[0]) {
-    case('H'):
+    switch (std::tolower(joint_name_string[0])) {
+    case 'h':
     {
         return JointName::HIP;
         break;
     }
-    case('K'):
+    case 'k':
     {
         return JointName::KNEE;
         break;
     }
-    case('S'):
+    case 's':
     {
         return JointName::SHOULDER;
         break;
     }
     default:
     {
-        return JointName::UNDEFINED;
+        throw std::runtime_error("Invalid Joint Name provided.");
         break;
     }
     };
@@ -61,13 +61,13 @@ JointName Patient_C::GetJointNameFromString(const std::string& joint_name_string
 
 std::string Patient_C::GetOperativeSideToString() const
 {
-    switch(_operative_side) {
-    case(OperativeSide::LEFT):
+    switch (_operative_side) {
+    case OperativeSide::LEFT:
     {
         return "LEFT";
         break;
     }
-    case(OperativeSide::RIGHT):
+    case OperativeSide::RIGHT:
     {
         return "RIGHT";
         break;
@@ -82,20 +82,20 @@ std::string Patient_C::GetOperativeSideToString() const
 
 OperativeSide Patient_C::GetOperativeSideFromString(const std::string& operative_side_string) const
 {
-    switch(operative_side_string[0]) {
-    case('L'):
+    switch (std::tolower(operative_side_string[0])) {
+    case 'l':
     {
         return OperativeSide::LEFT;
         break;
     }
-    case('R'):
+    case 'r':
     {
         return OperativeSide::RIGHT;
         break;
     }
     default:
     {
-        return OperativeSide::UNDEFINED;
+        throw std::runtime_error("Invalid Operative Side provided.");
         break;
     }
     };
@@ -105,13 +105,12 @@ OperativeSide Patient_C::GetOperativeSideFromString(const std::string& operative
 void Patient_C::PrettyPrint() const
 {
     std::cout << "Name: " << Patient_C::GetName() << std::endl;
-    std::cout << "Date of Birth: " << Patient_C::GetDob() << std::endl;
-    std::cout << "Surgery Date: " << Patient_C::GetSurgeryDate() << std::endl;
+    std::cout << "Date of Birth: " << Patient_C::GetDob().ToString() << std::endl;
+    std::cout << "Surgery Date: " << Patient_C::GetSurgeryDate().ToString() << std::endl;
     std::cout << "Surgeon Name: " << Patient_C::GetSurgeonName() << std::endl;
-
     std::cout << "Joint Name: " << Patient_C::GetJointName() << std::endl;
     std::cout << "Operative Side: " << Patient_C::GetOperativeSide() << std::endl;
 
 }
 
-} // namespace Patient
+} // namespace Types
