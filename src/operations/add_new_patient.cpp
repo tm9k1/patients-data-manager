@@ -7,42 +7,7 @@
 #include <string>
 #include <cctype>
 
-namespace Operations {
-bool GetDetails(Types::Patient_C& patient);
-
-bool AddNewPatient()
-{
-
-    while (true) {
-        Types::Patient_C patient;
-
-        if (!GetDetails(patient)) {
-            continue;
-        }
-
-        std::cout << "Got it! Please review the details provided:\n";
-        patient.PrettyPrint();
-
-        std::string confirmation_string;
-
-        std::cout << "To confirm, type in \"Confirm\". To discard, type \"Discard\". Press Enter key when you're done typing." << std::endl;
-        std::cin >> confirmation_string;
-        if (std::tolower(confirmation_string[0]) == 'c') {
-            Application::Application_C::GetPatientsData().emplace_back(patient);
-            IO::SaveToJSON(Application::Application_C::GetPatientsData());
-            std::cout << "Saved to memory!\n";
-        } else {
-            std::cout << "Discarded from memory!\n";
-        }
-
-        std::cout << "If you'd like to return to the main menu, type in \"Exit\". To add another patient,  type \"Add\". Press Enter key when you're done typing." << std::endl;
-        std::cin >> confirmation_string;
-        if (std::tolower(confirmation_string[0]) == 'e') {
-            break;
-        }
-    }
-    return true;
-}
+namespace {
 
 bool GetDetails(Types::Patient_C& patient)
 {
@@ -79,6 +44,7 @@ bool GetDetails(Types::Patient_C& patient)
         std::cout << "Please provide Operative Side for the planned \"" << patient.GetJointName() <<" SURGERY\" (eg: Left / Right) "<< std::endl;
         std::getline(std::cin, temp);
         patient.SetOperativeSide(temp);
+        std::cin.ignore(); // get rid of any lingering line breaks
 
     } catch (std::runtime_error exception) {
         std::cerr << exception.what();
@@ -87,7 +53,44 @@ bool GetDetails(Types::Patient_C& patient)
     }
 
     return true;
+}
 
+} // namespace
+
+namespace Operations {
+
+bool AddNewPatient()
+{
+
+    while (true) {
+        Types::Patient_C patient;
+
+        if (!GetDetails(patient)) {
+            continue;
+        }
+
+        std::cout << "Got it! Please review the details provided:\n";
+        patient.PrettyPrint();
+
+        std::string confirmation_string;
+
+        std::cout << "To confirm, type in \"Confirm\". To discard, type \"Discard\". Press Enter key when you're done typing." << std::endl;
+        std::cin >> confirmation_string;
+        if (std::tolower(confirmation_string[0]) == 'c') {
+            Application::Application_C::GetPatientsData().emplace_back(patient);
+            IO::SaveToJSON(Application::Application_C::GetPatientsData());
+            std::cout << "Saved to memory!\n";
+        } else {
+            std::cout << "Discarded from memory!\n";
+        }
+
+        std::cout << "If you'd like to return to the main menu, type in \"Exit\". To add another patient,  type \"Add\". Press Enter key when you're done typing." << std::endl;
+        std::cin >> confirmation_string;
+        if (std::tolower(confirmation_string[0]) == 'e') {
+            break;
+        }
+    }
+    return true;
 }
 
 } // namespace Operations

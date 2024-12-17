@@ -4,7 +4,7 @@
 
 namespace Operations {
 
-bool DisplayPatientDetails()
+bool DisplayPatientDetails(const std::vector<Types::Patient_C>& patients)
 {
     std::cout << "Here are the details for all the patients:" << std::endl;
     std::cout << std::endl;
@@ -13,7 +13,7 @@ bool DisplayPatientDetails()
     std::cout << "--------------------------------------------------------" << std::endl;
     std::cout << std::endl;
     bool firstElement = true;
-    for (const auto patient: Application::Application_C::GetPatientsData()) {
+    for (const auto patient: patients) {
         if (firstElement) {
             firstElement = false;
         } else {

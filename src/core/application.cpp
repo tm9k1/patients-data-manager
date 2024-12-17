@@ -32,6 +32,8 @@ ReturnCode Application_C::exec()
             auto success = Application_C::startOperation();
             if (!success) {
                 std::cerr << "Something went wrong. Try again?\n";
+            } else {
+                std::cout << "Returning to the main menu.\n";
             }
         } else {
             std::cout << "Invalid Input ! Try again.\n";
@@ -76,7 +78,10 @@ bool Application_C::startOperation()
             return Operations::AddNewPatient();
         }
         case 2: {
-            return Operations::DisplayPatientDetails();
+            return Operations::DisplayPatientDetails(_patients_data);
+        }
+        case 3: {
+            return Operations::SearchByName();
         }
         default: {
             return false;
