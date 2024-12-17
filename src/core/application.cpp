@@ -81,7 +81,10 @@ bool Application_C::startOperation()
             return Operations::DisplayPatientDetails(_patients_data);
         }
         case 3: {
-            return Operations::SearchByName();
+            return Operations::SearchByPatientName();
+        }
+        case 4: {
+            return Operations::SearchBySurgeonName();
         }
         default: {
             return false;
