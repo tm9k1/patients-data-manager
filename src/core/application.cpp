@@ -86,6 +86,15 @@ bool Application_C::startOperation()
         case 4: {
             return Operations::SearchBySurgeonName();
         }
+        case 5: {
+            return Operations::SearchByJointName();
+        }
+        case 6: {
+            return Operations::SearchByOperativeSide();
+        }
+        case 7: {
+            return Operations::SortByField();
+        }
         default: {
             return false;
         }
